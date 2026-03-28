@@ -1,8 +1,24 @@
-@import url("https://fonts.googleapis.com/css2?family=Geo:ital@0;1&family=Geom:ital,wght@0,300..900;1,300..900&display=swap");
 @import "tailwindcss";
 
-.squircle {
-  corner-shape: squircle;
+@layer base {
+  @font-face {
+    font-family: "Geo";
+    src: url("/fonts/Geo-Regular.woff2") format("woff2");
+    font-display: swap;
+  }
+
+  :root {
+    font-size: 120%;
+  }
+
+  button {
+    outline-color: var(--color-violet-400);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-violet-400);
+    outline-offset: 3px;
+  }
 }
 
 @theme {
