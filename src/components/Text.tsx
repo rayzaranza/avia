@@ -17,9 +17,5 @@ const variants = {
 
 export function Text({ variant = "body", className, children }: TextProps) {
   const { as: Component, classes } = variants[variant];
-  return (
-    <Component className={cn(classes, className, "antialiased")}>
-      {children}
-    </Component>
-  );
+  return <Component className={cn(classes, className)}>{children}</Component>;
 }
