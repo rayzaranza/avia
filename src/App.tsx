@@ -1,6 +1,5 @@
 import { ArrowLeft, Home, TvIcon } from "lucide-react";
 import { Button } from "./components/Button";
-import { Plus } from "lucide-react";
 import { Text } from "./components/Text";
 import { Input } from "./components/Input";
 import { Card } from "./components/Card";
@@ -29,17 +28,7 @@ export function App() {
           </div>
           <Input label="email" readOnly value="ray@zaranza.com.br" />
         </div>
-
-        <Input label="email" />
       </div>
-
-      <div className="flex gap-4">
-        <Button icon={Plus}></Button>
-        <Button variant="accent">botão</Button>
-        <Button variant="danger">botão</Button>
-      </div>
-
-      <Card title="asdadsad" />
     </div>
   );
 }
