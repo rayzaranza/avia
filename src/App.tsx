@@ -5,7 +5,7 @@ import { Text } from "./components/Text";
 
 export function App() {
   return (
-    <div className="h-dvh grid place-content-center gap-8">
+    <div className="grid h-dvh place-content-center gap-8">
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-1">
           <Text variant="h1">título 1</Text>
@@ -15,25 +15,25 @@ export function App() {
           <Text variant="caption">legenda</Text>
         </div>
 
-        <div className="flex gap-5 place-items-center">
+        <div className="flex place-items-center gap-5">
           <Icon icon={Plus} size="large" />
           <Icon icon={Plus} />
           <Icon icon={Plus} size="small" />
         </div>
 
-        <div className="flex gap-5 place-items-center">
+        <div className="flex place-items-center gap-5">
           <Icon icon={ArrowLeft} size="large" />
           <Icon icon={ArrowLeft} />
           <Icon icon={ArrowLeft} size="small" />
         </div>
 
-        <div className="flex gap-5 place-items-center">
+        <div className="flex place-items-center gap-5">
           <Icon icon={Trash} size="large" />
           <Icon icon={Trash} />
           <Icon icon={Trash} size="small" />
         </div>
 
-        <p className="text-xl max-w-2xl">
+        <p className="max-w-2xl text-xl">
           sdhai ygsdo haodhy ophs odgasd iogasdh asd gaosfc asdaisdais naaois7
           aosasdiasdaggadga asdgaysdgai agsdaisg gs sdgaa aidad agsda s
         </p>
