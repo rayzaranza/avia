@@ -8,7 +8,7 @@ interface InputProps extends ComponentPropsWithRef<"input"> {
 export function Input({ label, ...rest }: InputProps) {
   const id = useId();
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2 select-none">
       {label && (
         <label htmlFor={id} className="cursor-pointer">
           {label}
@@ -16,8 +16,8 @@ export function Input({ label, ...rest }: InputProps) {
       )}
       <input
         className={cn(
-          "flex h-10 rounded-xl bg-surface-pressed p-4",
-          "shadow-inset hover:shadow-inset-hover",
+          "flex h-10 rounded-xl bg-surface-pressed p-4 hover:bg-surface",
+          "shadow-inset transition hover:shadow-inset-hover",
         )}
         id={id}
         {...rest}
