@@ -9,7 +9,7 @@ describe("Button", () => {
     expect(screen.getByRole("button")).toBeInTheDocument();
   });
 
-  test("dsiplays text content", () => {
+  test("displays text content", () => {
     render(<Button>text</Button>);
     expect(screen.getByText("text")).toBeInTheDocument();
   });
