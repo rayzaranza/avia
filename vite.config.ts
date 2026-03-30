@@ -3,6 +3,7 @@ import react from "@vitejs/plugin-react";
 import { defineConfig } from "vitest/config";
 import svgr from "vite-plugin-svgr";
 import { tanstackRouter } from "@tanstack/router-plugin/vite";
+import path from "path";
 
 export default defineConfig({
   plugins: [
@@ -11,6 +12,11 @@ export default defineConfig({
     react(),
     svgr(),
   ],
+resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
+  },
   test: {
     environment: "jsdom",
     globals: true,
