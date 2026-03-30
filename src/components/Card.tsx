@@ -12,10 +12,9 @@ export function Card({ icon = TreePalm, title }: CardProps) {
   return (
     <div
       className={cn(
-        "squircle flex min-w-36 cursor-pointer flex-col gap-7 rounded-3xl p-4 pb-3 select-none",
-        "bg-surface hover:bg-surface-hover active:bg-surface-pressed",
-        "shadow-elevated hover:shadow-elevated-hover active:shadow-inset",
-        "transition hover:-translate-y-0.5 active:translate-y-0",
+        "squircle flex min-w-36 flex-col gap-7 rounded-3xl p-4 pb-3",
+        "bg-surface",
+        "shadow-elevated",
       )}
     >
       <Icon icon={icon} />
