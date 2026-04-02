@@ -15,6 +15,18 @@
     outline-color: var(--color-violet-400);
   }
 
+  a {
+    text-underline-offset: 0.4rem;
+  }
+
+  a[data-status="active"] {
+    text-decoration-line: underline;
+  }
+
+  a[data-status="active"]:hover {
+    text-decoration: none;
+  }
+
   :focus-visible {
     outline: 2px solid var(--color-violet-400);
     outline-offset: 3px;
@@ -73,6 +85,8 @@
     inset 0 -1px 0 var(--color-highlight), 0 -2px 0 var(--color-shadow);
   --shadow-inset-hover:
     inset 0 -1px 0 var(--color-highlight-hover), 0 -2px 0 var(--color-shadow);
+  --shadow-floating:
+    var(--shadow-elevated), 0 14px 16px -3px var(--color-shadow);
 }
 
 @theme inline {
