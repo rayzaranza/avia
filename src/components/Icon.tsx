@@ -1,24 +1,15 @@
 import { Cat, type LucideIcon } from "lucide-react";
 import { cn } from "../utils/classNames";
+import { isValidElement, type ReactElement } from "react";
 
 interface IconProps {
-  icon: LucideIcon;
-  size?: "small" | "medium" | "large";
+  icon: LucideIcon | ReactElement;
   className?: string;
 }
 
-const sizes = {
-  small: "w-4 h-4",
-  medium: "w-6 h-6",
-  large: "w-10 h-10",
-};
-
-export function Icon({
-  icon: SVG = Cat,
-  size = "medium",
-  className,
-}: IconProps) {
-  return (
-    <SVG className={cn("shrink-0 text-current", sizes[size], className)} />
-  );
+export function Icon({ icon: SVG = Cat, className }: IconProps) {
+  if (isValidElement(SVG)) {
+    return SVG;
+  }
+  return <SVG className={cn("size-300 shrink-0 text-current", className)} />;
 }

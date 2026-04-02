@@ -1,20 +1,18 @@
 import { cn } from "../utils/classNames";
 import { Loader, type LucideIcon } from "lucide-react";
 import { Icon } from "./Icon";
+import { type ReactElement } from "react";
 
 interface ButtonProps extends React.ComponentPropsWithRef<"button"> {
-  variant?: "default" | "accent" | "danger";
-  icon?: LucideIcon;
+  variant?: "default" | "accent";
+  icon?: LucideIcon | ReactElement;
   isLoading?: boolean;
   className?: string;
 }
 
 const variants = {
-  default: "bg-surface hover:bg-surface-hover active:bg-surface-pressed",
-  accent:
-    "bg-surface-accent hover:bg-surface-accent-hover active:bg-surface-accent-pressed",
-  danger:
-    "bg-surface-danger hover:bg-surface-danger-hover active:bg-surface-danger-pressed",
+  default: "blocky",
+  accent: "blocky-accent",
 };
 
 export function Button({
@@ -29,24 +27,21 @@ export function Button({
     <button
       type="button"
       className={cn(
-        "flex h-10 cursor-pointer items-center justify-center gap-2 rounded-2xl px-4 pb-0.5 text-lg select-none",
-        "shadow-elevated hover:shadow-elevated-hover active:shadow-inset",
-        "transition hover:-translate-y-px active:translate-y-0.5",
-        "squircle",
-        !children && "w-10",
+        "flex items-center justify-center gap-100",
+        "h-medium px-200 text-100",
+        icon && "pl-100",
         variants[variant],
-        isLoading &&
-          "pointer-events-none cursor-progress bg-surface-pressed shadow-inset",
         className,
-        "disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-surface-hover disabled:text-content-disabled disabled:shadow-none",
       )}
       {...rest}
     >
-      {isLoading && (
-        <Icon size="medium" icon={Loader} className="animate-spin" />
+      {isLoading && <Icon icon={Loader} className="animate-spin" />}
+      {!isLoading && icon && <Icon icon={icon} />}
+      {children && (
+        <span className="inline-flex items-center justify-center gap-100">
+          {children}
+        </span>
       )}
-      {!isLoading && icon && <Icon size="medium" icon={icon} />}
-      {children && <span className="translate-y-[0.05rem]">{children}</span>}
     </button>
   );
 }

@@ -6,7 +6,7 @@ interface PopoverContainerProps {
 
 export function PopoverContainer({ children }: PopoverContainerProps) {
   return (
-    <div className="squircle flex flex-col gap-4 rounded-3xl bg-canvas p-4 shadow-floating">
+    <div className="flex flex-col items-start justify-start gap-200 rounded-large bg-container p-300 shadow-blocky-floating">
       {children}
     </div>
   );

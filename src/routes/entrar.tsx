@@ -28,10 +28,10 @@ function LoginPage() {
   }
 
   return (
-    <div className="grid h-dvh place-content-center place-items-center gap-9 bg-surface-pressed">
+    <div className="grid h-dvh place-content-center place-items-center gap-600">
       <Logo />
-      <div className="squircle flex min-w-72 flex-col place-items-center gap-5 rounded-2xl bg-canvas p-8 shadow-elevated">
-        <Text variant="h3">entre</Text>
+      <div className="min-w-72 rounded-2xl flex flex-col place-items-center gap-300 p-400 pb-700">
+        <Text variant="h1">entre & faça</Text>
         <Button
           isLoading={isLoading}
           icon={GithubIcon}

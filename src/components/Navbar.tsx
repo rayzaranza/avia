@@ -10,6 +10,7 @@ import { Button } from "./Button";
 import { useState } from "react";
 import { signOut } from "@/services/auth";
 import { Text } from "./Text";
+import { cn } from "@/utils/classNames";
 
 interface NavbarProps {
   user: User;
@@ -17,47 +18,56 @@ interface NavbarProps {
 
 export function Navbar({ user }: NavbarProps) {
   const navigate = useNavigate();
-  const [isUserMenuOpen, setIsUserMenuOpen] = useState<boolean>(false);
-  const [isSigningOut, setIsSigningOut] = useState<boolean>(false);
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   async function handleSignOut() {
-    setIsSigningOut(true);
+    setIsLoading(true);
     await signOut();
     await navigate({ to: "/entrar" });
   }
 
   return (
     <div>
-      <Wrapper className="flex justify-between">
+      <Wrapper className="flex items-center justify-between gap-200">
         <Link to="/">
           <Logo />
         </Link>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-400">
           <Popover
             positions={["bottom"]}
             isOpen={isUserMenuOpen}
             onClickOutside={() => setIsUserMenuOpen(false)}
             content={
               <PopoverContainer>
+                <div>
+                  <Text>{user.user_metadata.full_name}</Text>
+                  <Text variant="caption">{user.email}</Text>
+                </div>
                 <Button
-                  isLoading={isSigningOut}
+                  isLoading={isLoading}
                   onClick={handleSignOut}
                   icon={LogOut}
                 >
-                  {isSigningOut ? "saindo..." : "sair"}
+                  {isLoading ? "saindo..." : "sair"}
                 </Button>
               </PopoverContainer>
             }
           >
-            <button
+            <Button
+              className={cn(
+                "-mr-200 bg-canvas px-100 shadow-none",
+                isUserMenuOpen && "pointer-events-none",
+              )}
               onClick={() => setIsUserMenuOpen(true)}
-              className="flex cursor-pointer items-center gap-1 rounded-full p-1 transition hover:bg-surface-hover hover:shadow-elevated"
             >
               <Avatar image={user.user_metadata.avatar_url} />
-              <Text>{user.user_metadata.name.split(" ")[0]}</Text>
+              <Text className="sr-only text-100 sm:not-sr-only">
+                {user.user_metadata.name.split(" ")[0]}
+              </Text>
               <ChevronDown />
-            </button>
+            </Button>
           </Popover>
         </div>
       </Wrapper>

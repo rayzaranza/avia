@@ -1,4 +1,3 @@
-import { Button } from "@/components/Button";
 import { Text } from "@/components/Text";
 import { Wrapper } from "@/components/Wrapper";
 import { getProjectById } from "@/services/projects";

@@ -26,9 +26,9 @@ function ProjectsPage() {
     return (
       <Wrapper>
         <main>
-          <section className="align flex flex-col items-center gap-8 pt-10 text-center">
+          <section className="flex flex-col items-center gap-100 pt-200 text-center">
             <EmptyStateIcon />
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-100">
               <Text variant="h2">crie seu primeiro projeto</Text>
               <Text>
                 Use projetos para agrupar tarefas relacionadas e manter o foco.
@@ -42,13 +42,13 @@ function ProjectsPage() {
   }
 
   return (
-    <Wrapper>
-      <header className="mb-8 flex flex-wrap items-center justify-between gap-6">
+    <Wrapper className="flex flex-col gap-400">
+      <header className="flex flex-wrap items-center justify-between gap-100">
         <Text variant="h1">projetos</Text>
         <CreateProjectPopover />
       </header>
 
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 gap-200 sm:grid-cols-2 lg:grid-cols-3">
         {projects?.map(({ id, name }) => (
           <Link key={id} to="/projetos/$id" params={{ id }}>
             <Card title={name} />
@@ -92,7 +92,7 @@ function CreateProjectPopover() {
         }}
       />
       {error && <Text>não deu certo</Text>}
-      <div className="flex justify-end gap-2">
+      <div className="gap-2 flex justify-end">
         <Button onClick={() => setIsPopoverOpen(false)}>cancelar</Button>
         <Button
           disabled={!name}
@@ -115,7 +115,7 @@ function CreateProjectPopover() {
       <Button
         className={
           isPopoverOpen
-            ? "pointer-events-none translate-y-0.5 bg-surface-pressed"
+            ? "pointer-events-none blocky-inset"
             : "pointer-events-auto"
         }
         onClick={() => setIsPopoverOpen(true)}

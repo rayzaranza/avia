@@ -1,25 +1,21 @@
-import { TreePalm, type LucideIcon } from "lucide-react";
+import { type LucideIcon } from "lucide-react";
 import { Icon } from "./Icon";
 import { Text } from "./Text";
-import { cn } from "../utils/classNames";
 
 interface CardProps {
   icon?: LucideIcon;
   title: string;
 }
 
-export function Card({ icon = TreePalm, title }: CardProps) {
+export function Card({ icon, title }: CardProps) {
   return (
     <article
-      className={cn(
-        "squircle flex min-w-36 flex-col gap-7 rounded-3xl p-4 pb-3",
-        "bg-surface hover:bg-surface-hover active:bg-surface-pressed",
-        "shadow-elevated hover:shadow-elevated-hover active:shadow-inset",
-        "transition duration-200 ease-out",
-      )}
+      className={
+        "flex min-h-[144px] blocky flex-col justify-end gap-200 p-200 pb-100"
+      }
     >
-      <Icon icon={icon} />
-      <Text className="text-xl">{title}</Text>
+      {icon ? <Icon icon={icon} className="size-medium" /> : <></>}
+      <Text>{title}</Text>
     </article>
   );
 }
