@@ -1,0 +1,44 @@
+import { createTask } from "@/services/tasks";
+import { useRouter } from "@tanstack/react-router";
+import { useState } from "react";
+import { z } from "zod";
+
+const taskNameSchema = z
+  .string()
+  .trim()
+  .min(1, "a tarefa precisa de um nome")
+  .max(96, "o nome da tarefa é muito longo");
+
+export function useCreateTask(projectId: string) {
+  const router = useRouter();
+  const [errorMessage, setErrorMessage] = useState<string>("");
+
+  async function handleCreateTask(formData: FormData) {
+    setErrorMessage("");
+    const name = formData.get("name");
+    const validation = taskNameSchema.safeParse(name);
+
+    if (validation.error) {
+      setErrorMessage(
+        validation.error.issues[0]?.message ?? "erro de validação",
+      );
+      return { success: false };
+    }
+
+    const { error } = await createTask({
+      name: validation.data,
+      project_id: projectId,
+    });
+
+    if (error) {
+      setErrorMessage(error);
+      return { success: false };
+    }
+
+    await router.invalidate({ sync: true });
+    setErrorMessage("");
+    return { success: true };
+  }
+
+  return { handleCreateTask, error: errorMessage };
+}
