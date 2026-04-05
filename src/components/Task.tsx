@@ -1,22 +1,31 @@
-import { Check } from "lucide-react";
+import { Check, Trash2 } from "lucide-react";
 import { Text } from "./Text";
 import { cn } from "@/utils/classNames";
 import { Icon } from "./Icon";
 import { type ChangeEvent, useOptimistic, useTransition } from "react";
+import { Button } from "./Button";
 
 interface TaskProps {
   name: string;
   isDone: boolean;
   className?: string;
   onToggle: (value: boolean) => Promise<void>;
+  onDelete: () => void;
+  isDeleting: boolean;
 }
 
-export function Task({ name, isDone, className, onToggle }: TaskProps) {
+export function Task({
+  name,
+  isDone,
+  className,
+  onToggle,
+  onDelete,
+  isDeleting,
+}: TaskProps) {
   const [optimisticIsDone, addOptimisticIsDone] = useOptimistic(
     isDone,
     (_state, newValue: boolean) => newValue,
   );
-
   const [isPending, startTransition] = useTransition();
 
   function handleCheckboxChange({ target }: ChangeEvent<HTMLInputElement>) {
@@ -25,6 +34,7 @@ export function Task({ name, isDone, className, onToggle }: TaskProps) {
       await onToggle(target.checked);
     });
   }
+
   return (
     <div
       className={cn(
@@ -60,10 +70,18 @@ export function Task({ name, isDone, className, onToggle }: TaskProps) {
 
       <div
         className={cn(
-          "flex gap-100 opacity-0 focus-within:opacity-100 md:group-hover:opacity-100",
-          isPending && "opacity-100",
+          "hidden gap-100 opacity-0 focus-within:opacity-100 md:flex md:group-hover:opacity-100",
+          isDeleting && "opacity-100",
         )}
-      ></div>
+      >
+        <Button
+          icon={Trash2}
+          className="text-content-danger"
+          isLoading={isDeleting}
+          onClick={onDelete}
+          title="excluir tarefa"
+        />
+      </div>
     </div>
   );
 }
