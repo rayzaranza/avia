@@ -3,7 +3,7 @@ import { getProjectById } from "@/services/projects";
 import { createFileRoute, notFound } from "@tanstack/react-router";
 import { getTasks } from "@/services/tasks";
 import { EmptyState } from "@/components/EmptyState";
-import { ProjectDetailPage } from ".";
+import { ProjectDetailPage } from "./-components/ProjectDetailPage";
 
 export const Route = createFileRoute("/_authenticated/projetos/$id")({
   loader: async ({ params: { id } }) => {

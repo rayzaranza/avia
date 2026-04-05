@@ -5,8 +5,8 @@ import { TaskList } from "@/components/TaskList";
 import { Wrapper } from "@/components/Wrapper";
 import { Plus } from "lucide-react";
 import { useState } from "react";
-import { TasksEmptyState } from "./components/TasksEmptyState";
-import { Route } from "./route";
+import { TasksEmptyState } from "./TasksEmptyState";
+import { Route } from "../route";
 
 export function ProjectDetailPage() {
   const { project, tasks } = Route.useLoaderData();
