@@ -42,7 +42,7 @@ export function Button({
       {isLoading && <Icon icon={Loader} className="animate-spin" />}
       {!isLoading && icon && <Icon icon={icon} />}
       {children && (
-        <span className="inline-flex items-center justify-center gap-100">
+        <span className="mt-[0.1rem] inline-flex items-center justify-center gap-100">
           {children}
         </span>
       )}
