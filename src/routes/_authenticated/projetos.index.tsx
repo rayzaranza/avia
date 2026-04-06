@@ -4,7 +4,7 @@ import { Button } from "@/components/Button";
 import { Plus } from "lucide-react";
 import { Wrapper } from "@/components/Wrapper";
 import { Popover } from "react-tiny-popover";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Input } from "@/components/Input";
 import EmptyStateIcon from "@/assets/projects_empty_state.svg?react";
 import { PopoverContainer } from "@/components/PopoverContainer";
@@ -69,10 +69,20 @@ function ProjectsPage() {
 
 function CreateProjectButton() {
   const navigate = useNavigate();
-  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const [name, setName] = useState<string>();
   const [error, setError] = useState<string>();
   const [isLoading, setIsLoading] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (isOpen) {
+      const timer = setTimeout(() => {
+        inputRef.current?.focus();
+      }, 0);
+      return () => clearTimeout(timer);
+    }
+  }, [isOpen]);
 
   async function handleCreateProject() {
     if (!name) {
@@ -93,15 +103,15 @@ function CreateProjectButton() {
   const container = (
     <PopoverContainer>
       <Input
-        autoFocus
+        ref={inputRef}
         label="nome do projeto"
         onChange={(e) => {
           setName(e.target.value);
         }}
       />
       {error && <Text>não deu certo</Text>}
-      <div className="gap-2 flex justify-end">
-        <Button onClick={() => setIsPopoverOpen(false)}>cancelar</Button>
+      <div className="flex w-full justify-end gap-100">
+        <Button onClick={() => setIsOpen(false)}>cancelar</Button>
         <Button
           disabled={!name}
           onClick={handleCreateProject}
@@ -117,16 +127,15 @@ function CreateProjectButton() {
   return (
     <Popover
       positions={["bottom", "top"]}
-      isOpen={isPopoverOpen}
+      isOpen={isOpen}
+      containerClassName="z-100"
       content={container}
     >
       <Button
         className={
-          isPopoverOpen
-            ? "pointer-events-none blocky-inset"
-            : "pointer-events-auto"
+          isOpen ? "pointer-events-none blocky-inset" : "pointer-events-auto"
         }
-        onClick={() => setIsPopoverOpen(true)}
+        onClick={() => setIsOpen(true)}
         icon={Plus}
         variant="accent"
       >
