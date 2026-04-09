@@ -53,5 +53,13 @@
     "vite-plugin-svgr": "^4.5.0",
     "vitest": "^4.1.2",
     "wrangler": "^4.80.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "sharp",
+      "supabase",
+      "workerd"
+    ]
   }
 }
