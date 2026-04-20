@@ -55,6 +55,13 @@
   --color-highlight-hover: oklch(1 0 0 / 0.6);
   --color-highlight-active: oklch(1 0 0 / 0.3);
   --color-backdrop: oklch(0 0 0 / 0.7);
+
+  --color-project-gray: oklch(0.5402 0.031 289.91);
+  --color-project-green: oklch(0.6616 0.1151 159.26);
+  --color-project-blue: oklch(0.6482 0.118 254.52);
+  --color-project-red: oklch(0.5289 0.1258 22.33);
+  --color-project-yellow: oklch(0.6815 0.1035 99.65);
+  --color-project-pink: oklch(0.5597 0.1642 330.86);
 }
 
 @theme {

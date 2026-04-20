@@ -16,25 +16,25 @@ export type Database = {
     Tables: {
       projects: {
         Row: {
+          color: string | null
           created_at: string
           deleted_at: string | null
-          icon: string | null
           id: string
           name: string
           user_id: string
         }
         Insert: {
+          color?: string | null
           created_at?: string
           deleted_at?: string | null
-          icon?: string | null
           id?: string
           name: string
           user_id?: string
         }
         Update: {
+          color?: string | null
           created_at?: string
           deleted_at?: string | null
-          icon?: string | null
           id?: string
           name?: string
           user_id?: string

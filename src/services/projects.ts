@@ -16,7 +16,7 @@ export async function createProject(project: ProjectsInsert) {
 export async function getProjects() {
   const { data, error } = await supabase
     .from("projects")
-    .select("id, name, icon")
+    .select("id, name, color")
     .is("deleted_at", null);
   return {
     projects: data ?? null,
@@ -27,7 +27,7 @@ export async function getProjects() {
 export async function getProjectById(id: string) {
   const { data, error } = await supabase
     .from("projects")
-    .select("id, name, icon")
+    .select("id, name, color")
     .eq("id", id)
     .single();
   return {
