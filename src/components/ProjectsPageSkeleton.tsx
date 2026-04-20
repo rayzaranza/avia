@@ -8,7 +8,7 @@ export function ProjectsPageSkeleton() {
     <Wrapper className="flex flex-col gap-400 pb-[900px]">
       <header className="flex flex-wrap items-center justify-between gap-100">
         <Text variant="h1">projetos</Text>
-        <Skeleton width={160} height={44} />
+        <Skeleton className="hidden sm:flex" width={160} height={44} />
       </header>
 
       <ul className="grid grid-cols-1 gap-200 sm:grid-cols-2 lg:grid-cols-3">

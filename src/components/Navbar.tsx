@@ -28,7 +28,7 @@ export function Navbar({ user }: NavbarProps) {
   }
 
   return (
-    <div className="mb-300 border-b border-border-tertiary">
+    <div className="mb-100 border-b border-border-tertiary sm:mb-300">
       <Wrapper className="flex items-center justify-between gap-200 py-200">
         <Link to="/">
           <Logo />
