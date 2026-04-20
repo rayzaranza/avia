@@ -15,7 +15,10 @@ export function ProjectDetailPage() {
 
   return (
     <Wrapper className="flex flex-col gap-300 pb-[640px]">
-      <Header backLink="/projetos" title={project.name}>
+      <Header
+        backLink={{ to: "/projetos", label: "projetos" }}
+        title={project.name}
+      >
         {!isEmpty && (
           <Button
             disabled={isCreating}

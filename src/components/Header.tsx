@@ -5,7 +5,7 @@ import { ArrowLeft } from "lucide-react";
 
 interface HeaderProps {
   title: string | ReactNode;
-  backLink?: string;
+  backLink?: { to: string; label: string };
   children?: ReactNode;
 }
 
@@ -15,9 +15,9 @@ export function Header({ title, backLink, children }: HeaderProps) {
       {backLink && (
         <Link
           className="inline-flex h-small items-center gap-100 px-100 text-content-secondary hover:blocky"
-          to={backLink}
+          to={backLink.to}
         >
-          <ArrowLeft /> voltar
+          <ArrowLeft /> {backLink.label ?? "voltar"}
         </Link>
       )}
       <div className="flex flex-wrap items-center justify-between gap-100">
