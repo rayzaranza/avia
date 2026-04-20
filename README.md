@@ -1,5 +1,3 @@
-![banner](.github/assets/banner.svg)
-
 # avia
 
 App de organização de tarefas criado para me aprofundar com desenvolvimento front-end.
