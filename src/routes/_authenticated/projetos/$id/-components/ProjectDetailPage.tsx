@@ -3,10 +3,11 @@ import { CreateTaskForm } from "@/components/CreateTaskForm";
 import { Header } from "@/components/Header";
 import { TaskList } from "@/components/TaskList";
 import { Wrapper } from "@/components/Wrapper";
-import { Plus } from "lucide-react";
 import { useState } from "react";
 import { TasksEmptyState } from "./TasksEmptyState";
 import { Route } from "../route";
+import PlusIcon from "@/assets/icons/Plus.svg?react";
+import { FloatingButton } from "@/components/FloatingButton";
 
 export function ProjectDetailPage() {
   const { project, tasks } = Route.useLoaderData();
@@ -20,14 +21,23 @@ export function ProjectDetailPage() {
         title={project.name}
       >
         {!isEmpty && (
-          <Button
-            disabled={isCreating}
-            variant="accent"
-            icon={Plus}
-            onClick={() => setIsCreating(true)}
-          >
-            criar tarefa
-          </Button>
+          <>
+            <Button
+              disabled={isCreating}
+              variant="accent"
+              className="hidden sm:flex"
+              icon={<PlusIcon />}
+              onClick={() => setIsCreating(true)}
+            >
+              criar tarefa
+            </Button>
+            {!isCreating && (
+              <FloatingButton
+                className="flex sm:hidden"
+                onClick={() => setIsCreating(true)}
+              />
+            )}
+          </>
         )}
       </Header>
 

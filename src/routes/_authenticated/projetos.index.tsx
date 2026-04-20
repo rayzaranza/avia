@@ -12,6 +12,10 @@ import { createProject, getProjects } from "@/services/projects";
 import { Card } from "@/components/Card";
 import { useDeleteProject } from "@/hooks/useDeleteProject";
 import { ProjectsPageSkeleton } from "@/components/ProjectsPageSkeleton";
+import { EmptyState } from "@/components/EmptyState";
+import { Header } from "@/components/Header";
+import { cn } from "@/utils/classNames";
+import { FloatingButton } from "@/components/FloatingButton";
 
 export const Route = createFileRoute("/_authenticated/projetos/")({
   component: ProjectsPage,
@@ -42,10 +46,9 @@ function ProjectsPage() {
 
   return (
     <Wrapper className="flex flex-col gap-400 pb-[900px]">
-      <header className="flex flex-wrap items-center justify-between gap-100">
-        <Text variant="h1">projetos</Text>
+      <Header title="projetos">
         <CreateProjectButton />
-      </header>
+      </Header>
 
       <ul className="grid grid-cols-1 gap-200 sm:grid-cols-2 lg:grid-cols-3">
         {projects?.map(({ id, name }) => (
@@ -128,16 +131,20 @@ function CreateProjectButton() {
       containerClassName="z-100"
       content={container}
     >
-      <Button
-        className={
-          isOpen ? "pointer-events-none blocky-inset" : "pointer-events-auto"
-        }
-        onClick={() => setIsOpen(true)}
+      <>
+        <Button
+          className={cn(
+            isOpen ? "pointer-events-none blocky-inset" : "pointer-events-auto",
+            "hidden sm:flex",
+          )}
+          onClick={() => setIsOpen(true)}
           icon={<PlusIcon />}
-        variant="accent"
-      >
-        criar projeto
-      </Button>
+          variant="accent"
+        >
+          criar projeto
+        </Button>
+        <FloatingButton onClick={() => setIsOpen(true)} className="sm:hidden" />
+      </>
     </Popover>
   );
 }
