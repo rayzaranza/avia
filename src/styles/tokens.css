@@ -59,7 +59,7 @@
 
 @theme {
   --thickness-shadow: 3px;
-  --thickness-shadow-hover: 5px;
+  --thickness-shadow-hover: 4px;
   --thickness-shadow-active: 2px;
 
   --thickness-highlight: 2px;
@@ -69,8 +69,8 @@
 
 @theme {
   --radius-*: initial;
-  --radius-medium: 16px;
-  --radius-large: 24px;
+  --radius-medium: 4px;
+  --radius-large: 12px;
   --radius-full: 128px;
 }
 
