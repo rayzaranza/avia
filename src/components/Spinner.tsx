@@ -1,0 +1,18 @@
+interface SpinnerProps {
+  size?: number | string;
+}
+
+export function Spinner({ size = 24 }: SpinnerProps) {
+  return (
+    <svg
+      className="animate-spin"
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="var(--color-content)"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M23 9V15H22V17H19V15H20V9H19V7H18V6H17V5H15V4H13V3H12V1H15V2H17V3H19V4H20V5H21V7H22V9H23Z" />
+    </svg>
+  );
+}
