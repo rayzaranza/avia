@@ -30,18 +30,12 @@ function ProjectsPage() {
   if (projects?.length === 0) {
     return (
       <Wrapper>
-        <main>
-          <section className="flex flex-col items-center gap-100 pt-200 text-center">
-            <EmptyStateIcon />
-            <div className="flex flex-col gap-100">
-              <Text variant="h2">crie seu primeiro projeto</Text>
-              <Text>
-                Use projetos para agrupar tarefas relacionadas e manter o foco.
-              </Text>
-            </div>
-            <CreateProjectButton />
-          </section>
-        </main>
+        <Header title="projetos" />
+        <EmptyState
+          icon={<FolderIcon className="size-medium" />}
+          description="Use projetos para agrupar tarefas relacionadas e manter o foco"
+          action={<CreateProjectButton />}
+        />
       </Wrapper>
     );
   }
