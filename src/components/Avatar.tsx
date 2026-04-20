@@ -3,5 +3,10 @@ interface AvatarProps {
 }
 
 export function Avatar({ image }: AvatarProps) {
-  return <img src={image} className="size-small rounded-full object-cover" />;
+  return (
+    <img
+      src={image}
+      className="size-small shrink-0 rounded-full object-cover"
+    />
+  );
 }
