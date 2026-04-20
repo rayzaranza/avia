@@ -2,8 +2,7 @@ import { Button } from "@/components/Button";
 import { useEffect, useRef } from "react";
 import { Input } from "@/components/Input";
 import { Text } from "@/components/Text";
-import { Icon } from "./Icon";
-import { AlertTriangle } from "lucide-react";
+import AlertTriangleIcon from "@/assets/icons/AlertTriangle.svg?react";
 import { useCreateTask } from "@/hooks/useCreateTask";
 import { SubmitButton } from "./SubmitButton";
 
@@ -46,7 +45,7 @@ export function CreateTaskForm({ projectId, onCancel }: CreateTaskFormProps) {
 
       {error && (
         <div className="ml-100 flex items-center gap-100 p-100 text-content-danger">
-          <Icon icon={AlertTriangle} />
+          <AlertTriangleIcon />
           <Text>{error}</Text>
         </div>
       )}

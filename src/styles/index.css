@@ -29,7 +29,6 @@
 @utility blocky-base {
   cursor: pointer;
   transition: all 150ms ease-out;
-  corner-shape: squircle;
   border-radius: var(--radius-medium);
 }
 

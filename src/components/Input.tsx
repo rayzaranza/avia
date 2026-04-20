@@ -17,6 +17,7 @@ export function Input({ label, className, ...rest }: InputProps) {
       <input
         className={cn(
           "flex h-medium w-full translate-y-[0.1rem] blocky-inset px-200",
+          "border border-border-secondary",
         )}
         id={id}
         {...rest}

@@ -3,7 +3,7 @@ import { Button } from "@/components/Button";
 import { Text } from "@/components/Text";
 import { signInWithGitHub } from "@/services/auth";
 import { useState } from "react";
-import GithubIcon from "@/assets/github.svg?react";
+import GithubIcon from "@/assets/icons/GitHub.svg?react";
 import Logo from "@/assets/logo.svg?react";
 
 export const Route = createFileRoute("/entrar")({
@@ -34,7 +34,7 @@ function LoginPage() {
         <Text variant="h1">entre & faça</Text>
         <Button
           isLoading={isLoading}
-          icon={GithubIcon}
+          icon={<GithubIcon />}
           onClick={handleSignIn}
           aria-label="Entrar com GitHub"
         >

@@ -2,7 +2,6 @@ import Logo from "@/assets/logo.svg?react";
 import { Link, useNavigate } from "@tanstack/react-router";
 import { Avatar } from "./Avatar";
 import type { User } from "@supabase/supabase-js";
-import { ChevronDown, LogOut } from "lucide-react";
 import { Wrapper } from "./Wrapper";
 import { Popover } from "react-tiny-popover";
 import { PopoverContainer } from "./PopoverContainer";
@@ -11,6 +10,7 @@ import { useState } from "react";
 import { signOut } from "@/services/auth";
 import { Text } from "./Text";
 import { cn } from "@/utils/classNames";
+import LogoutIcon from "@/assets/icons/Logout.svg?react";
 
 interface NavbarProps {
   user: User;
@@ -28,8 +28,8 @@ export function Navbar({ user }: NavbarProps) {
   }
 
   return (
-    <div>
-      <Wrapper className="flex items-center justify-between gap-200">
+    <div className="mb-100 border-b border-border-tertiary sm:mb-300">
+      <Wrapper className="flex items-center justify-between gap-200 py-200">
         <Link to="/">
           <Logo />
         </Link>
@@ -41,14 +41,11 @@ export function Navbar({ user }: NavbarProps) {
             onClickOutside={() => setIsUserMenuOpen(false)}
             content={
               <PopoverContainer>
-                <div>
-                  <Text>{user.user_metadata.full_name}</Text>
-                  <Text variant="caption">{user.email}</Text>
-                </div>
+                <Text>{user.email}</Text>
                 <Button
                   isLoading={isLoading}
                   onClick={handleSignOut}
-                  icon={LogOut}
+                  icon={<LogoutIcon />}
                 >
                   {isLoading ? "saindo..." : "sair"}
                 </Button>
@@ -57,16 +54,12 @@ export function Navbar({ user }: NavbarProps) {
           >
             <Button
               className={cn(
-                "-mr-200 bg-canvas px-100 shadow-none",
+                "-mr-100 border-none bg-transparent px-100 shadow-none",
                 isUserMenuOpen && "pointer-events-none",
               )}
               onClick={() => setIsUserMenuOpen(true)}
             >
               <Avatar image={user.user_metadata.avatar_url} />
-              <Text className="sr-only text-100 sm:not-sr-only">
-                {user.user_metadata.name.split(" ")[0]}
-              </Text>
-              <ChevronDown />
             </Button>
           </Popover>
         </div>

@@ -1,17 +1,21 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { Text } from "@/components/Text";
 import { Button } from "@/components/Button";
-import { Plus } from "lucide-react";
 import { Wrapper } from "@/components/Wrapper";
 import { Popover } from "react-tiny-popover";
 import { useEffect, useRef, useState } from "react";
 import { Input } from "@/components/Input";
-import EmptyStateIcon from "@/assets/projects_empty_state.svg?react";
+import FolderIcon from "@/assets/icons/Folder.svg?react";
+import PlusIcon from "@/assets/icons/Plus.svg?react";
 import { PopoverContainer } from "@/components/PopoverContainer";
 import { createProject, getProjects } from "@/services/projects";
 import { Card } from "@/components/Card";
 import { useDeleteProject } from "@/hooks/useDeleteProject";
 import { ProjectsPageSkeleton } from "@/components/ProjectsPageSkeleton";
+import { EmptyState } from "@/components/EmptyState";
+import { Header } from "@/components/Header";
+import { cn } from "@/utils/classNames";
+import { FloatingButton } from "@/components/FloatingButton";
 
 export const Route = createFileRoute("/_authenticated/projetos/")({
   component: ProjectsPage,
@@ -30,28 +34,21 @@ function ProjectsPage() {
   if (projects?.length === 0) {
     return (
       <Wrapper>
-        <main>
-          <section className="flex flex-col items-center gap-100 pt-200 text-center">
-            <EmptyStateIcon />
-            <div className="flex flex-col gap-100">
-              <Text variant="h2">crie seu primeiro projeto</Text>
-              <Text>
-                Use projetos para agrupar tarefas relacionadas e manter o foco.
-              </Text>
-            </div>
-            <CreateProjectButton />
-          </section>
-        </main>
+        <Header title="projetos" />
+        <EmptyState
+          icon={<FolderIcon className="size-medium" />}
+          description="Use projetos para agrupar tarefas relacionadas e manter o foco"
+          action={<CreateProjectButton />}
+        />
       </Wrapper>
     );
   }
 
   return (
     <Wrapper className="flex flex-col gap-400 pb-[900px]">
-      <header className="flex flex-wrap items-center justify-between gap-100">
-        <Text variant="h1">projetos</Text>
+      <Header title="projetos">
         <CreateProjectButton />
-      </header>
+      </Header>
 
       <ul className="grid grid-cols-1 gap-200 sm:grid-cols-2 lg:grid-cols-3">
         {projects?.map(({ id, name }) => (
@@ -134,16 +131,20 @@ function CreateProjectButton() {
       containerClassName="z-100"
       content={container}
     >
-      <Button
-        className={
-          isOpen ? "pointer-events-none blocky-inset" : "pointer-events-auto"
-        }
-        onClick={() => setIsOpen(true)}
-        icon={Plus}
-        variant="accent"
-      >
-        criar projeto
-      </Button>
+      <div>
+        <Button
+          className={cn(
+            isOpen ? "pointer-events-none blocky-inset" : "pointer-events-auto",
+            "hidden sm:flex",
+          )}
+          onClick={() => setIsOpen(true)}
+          icon={<PlusIcon />}
+          variant="accent"
+        >
+          criar projeto
+        </Button>
+        <FloatingButton onClick={() => setIsOpen(true)} className="sm:hidden" />
+      </div>
     </Popover>
   );
 }

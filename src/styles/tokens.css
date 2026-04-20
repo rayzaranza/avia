@@ -46,6 +46,10 @@
 
   --color-container-inverse: oklch(0.95 0.01 271);
 
+  --color-border: oklch(1 0 0 / 0.4);
+  --color-border-secondary: oklch(1 0 0 / 0.27);
+  --color-border-tertiary: oklch(1 0 0 / 0.15);
+
   --color-shadow: oklch(0 0 0 / 0.7);
   --color-highlight: oklch(1 0 0 / 0.1);
   --color-highlight-hover: oklch(1 0 0 / 0.6);
@@ -55,7 +59,7 @@
 
 @theme {
   --thickness-shadow: 3px;
-  --thickness-shadow-hover: 5px;
+  --thickness-shadow-hover: 4px;
   --thickness-shadow-active: 2px;
 
   --thickness-highlight: 2px;
@@ -65,8 +69,8 @@
 
 @theme {
   --radius-*: initial;
-  --radius-medium: 16px;
-  --radius-large: 24px;
+  --radius-medium: 4px;
+  --radius-large: 12px;
   --radius-full: 128px;
 }
 

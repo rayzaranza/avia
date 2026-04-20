@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { Plus } from "lucide-react";
+import PlusIcon from "@/assets/icons/Plus.svg?react";
 import { Button } from "./Button";
 
 describe("Button", () => {
@@ -15,7 +15,7 @@ describe("Button", () => {
   });
 
   test("displays icon when prop is provided", () => {
-    render(<Button icon={Plus}>text</Button>);
+    render(<Button icon={<PlusIcon />}>text</Button>);
     expect(screen.getByRole("button").querySelector("svg")).toBeInTheDocument();
   });
 

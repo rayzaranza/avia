@@ -1,15 +1,15 @@
-import { MoreHorizontal, Trash2, type LucideIcon } from "lucide-react";
-import { Icon } from "./Icon";
 import { Text } from "./Text";
 import { Link, type LinkProps } from "@tanstack/react-router";
 import { Button } from "@/components/Button";
+import TrashIcon from "@/assets/icons/Trash.svg?react";
+import DotsIcon from "@/assets/icons/Dots.svg?react";
 import { Popover } from "react-tiny-popover";
 import { PopoverContainer } from "./PopoverContainer";
-import { useState } from "react";
+import { useState, type ReactElement } from "react";
 import { cn } from "@/utils/classNames";
 
 interface CardProps {
-  icon?: LucideIcon;
+  icon?: ReactElement;
   title: string;
   to?: LinkProps["to"];
   params?: LinkProps["params"];
@@ -34,7 +34,7 @@ export function Card({
         isMenuOpen && "pointer-events-none",
       )}
     >
-      {icon ? <Icon icon={icon} className="size-medium" /> : <></>}
+      {icon}
       <CardActionMenu
         isDeleting={isDeleting}
         onChange={setIsMenuOpen}
@@ -85,7 +85,7 @@ function CardActionMenu({
         <PopoverContainer>
           <Button
             onClick={onDelete}
-            icon={Trash2}
+            icon={<TrashIcon className="text-content-danger" />}
             variant="danger"
             isLoading={isDeleting}
           >
@@ -100,7 +100,7 @@ function CardActionMenu({
           isOpen &&
             "group:pointer-event-none pointer-events-none blocky-inset md:opacity-100",
         )}
-        icon={MoreHorizontal}
+        icon={<DotsIcon className="shrink-0" />}
         onClick={() => handleOpenChange(true)}
         title="ações do projeto"
       />
