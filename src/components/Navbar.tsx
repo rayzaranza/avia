@@ -2,7 +2,6 @@ import Logo from "@/assets/logo.svg?react";
 import { Link, useNavigate } from "@tanstack/react-router";
 import { Avatar } from "./Avatar";
 import type { User } from "@supabase/supabase-js";
-import { LogOut } from "lucide-react";
 import { Wrapper } from "./Wrapper";
 import { Popover } from "react-tiny-popover";
 import { PopoverContainer } from "./PopoverContainer";
@@ -11,6 +10,7 @@ import { useState } from "react";
 import { signOut } from "@/services/auth";
 import { Text } from "./Text";
 import { cn } from "@/utils/classNames";
+import LogoutIcon from "@/assets/icons/Logout.svg?react";
 
 interface NavbarProps {
   user: User;
@@ -45,7 +45,7 @@ export function Navbar({ user }: NavbarProps) {
                 <Button
                   isLoading={isLoading}
                   onClick={handleSignOut}
-                  icon={LogOut}
+                  icon={<LogoutIcon />}
                 >
                   {isLoading ? "saindo..." : "sair"}
                 </Button>

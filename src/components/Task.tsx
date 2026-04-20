@@ -1,7 +1,7 @@
-import { Check, Trash2 } from "lucide-react";
+import CheckIcon from "@/assets/icons/Check.svg?react";
+import TrashIcon from "@/assets/icons/Trash.svg?react";
 import { Text } from "./Text";
 import { cn } from "@/utils/classNames";
-import { Icon } from "./Icon";
 import { type ChangeEvent, useOptimistic, useTransition } from "react";
 import { Button } from "./Button";
 
@@ -45,10 +45,7 @@ export function Task({
     >
       <div className="relative flex items-center justify-center">
         {optimisticIsDone && (
-          <Icon
-            icon={Check}
-            className="pointer-events-none absolute z-40 text-content-inverse"
-          />
+          <CheckIcon className="pointer-events-none absolute z-40 text-content-inverse" />
         )}
         <input
           disabled={isPending}
@@ -75,7 +72,7 @@ export function Task({
         )}
       >
         <Button
-          icon={Trash2}
+          icon={<TrashIcon className="shrink-0" />}
           className="text-content-danger"
           isLoading={isDeleting}
           onClick={onDelete}

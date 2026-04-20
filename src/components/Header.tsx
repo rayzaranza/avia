@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Text } from "./Text";
 import { type ReactNode } from "react";
-import { ArrowLeft } from "lucide-react";
+import ArrowBackIcon from "@/assets/icons/ArrowBack.svg?react";
 
 interface HeaderProps {
   title: string | ReactNode;
@@ -17,7 +17,7 @@ export function Header({ title, backLink, children }: HeaderProps) {
           className="inline-flex h-small items-center gap-100 px-100 text-content-secondary hover:blocky"
           to={backLink.to}
         >
-          <ArrowLeft /> {backLink.label ?? "voltar"}
+          <ArrowBackIcon /> {backLink.label ?? "voltar"}
         </Link>
       )}
       <div className="flex flex-wrap items-center justify-between gap-100">

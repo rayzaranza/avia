@@ -1,12 +1,12 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { Text } from "@/components/Text";
 import { Button } from "@/components/Button";
-import { Plus } from "lucide-react";
 import { Wrapper } from "@/components/Wrapper";
 import { Popover } from "react-tiny-popover";
 import { useEffect, useRef, useState } from "react";
 import { Input } from "@/components/Input";
-import EmptyStateIcon from "@/assets/projects_empty_state.svg?react";
+import FolderIcon from "@/assets/icons/Folder.svg?react";
+import PlusIcon from "@/assets/icons/Plus.svg?react";
 import { PopoverContainer } from "@/components/PopoverContainer";
 import { createProject, getProjects } from "@/services/projects";
 import { Card } from "@/components/Card";
@@ -139,7 +139,7 @@ function CreateProjectButton() {
           isOpen ? "pointer-events-none blocky-inset" : "pointer-events-auto"
         }
         onClick={() => setIsOpen(true)}
-        icon={Plus}
+          icon={<PlusIcon />}
         variant="accent"
       >
         criar projeto
