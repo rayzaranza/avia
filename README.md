@@ -1,10 +1,10 @@
 ![banner](.github/assets/banner.svg)
 
-# fazfaz
+# avia
 
 App de organização de tarefas criado para me aprofundar com desenvolvimento front-end.
 
-[⁜ Demo ⁜](https://fazfaz.rayzaranza-cloudflare-0ba.workers.dev)
+[⁜ Demo ⁜](https://avia.rayzaranza.com.br)
 
 ## Stack
 
