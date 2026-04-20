@@ -36,6 +36,7 @@ export function Button({
         className,
         isLoading && "pointer-events-none blocky-inset",
         "disabled:pointer-events-none disabled:bg-container-inset disabled:text-content-disabled disabled:shadow-none",
+        "border border-border-tertiary",
       )}
       {...rest}
     >

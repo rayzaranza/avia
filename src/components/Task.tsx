@@ -52,7 +52,7 @@ export function Task({
         )}
         <input
           disabled={isPending}
-          className="size-300 shrink-0 blocky-inset appearance-none rounded-full checked:bg-container-inverse checked:shadow-none"
+          className="rounded-small size-300 shrink-0 blocky-inset appearance-none border border-border-secondary checked:bg-container-inverse checked:shadow-none"
           type="checkbox"
           onChange={handleCheckboxChange}
           checked={optimisticIsDone}
