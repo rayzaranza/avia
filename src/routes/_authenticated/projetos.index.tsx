@@ -16,6 +16,8 @@ import { EmptyState } from "@/components/EmptyState";
 import { Header } from "@/components/Header";
 import { cn } from "@/utils/classNames";
 import { FloatingButton } from "@/components/FloatingButton";
+import { ColorInput } from "@/components/ColorInput";
+import type { ProjectColor } from "@/types/projects";
 
 export const Route = createFileRoute("/_authenticated/projetos/")({
   component: ProjectsPage,
@@ -51,10 +53,11 @@ function ProjectsPage() {
       </Header>
 
       <ul className="grid grid-cols-1 gap-200 sm:grid-cols-2 lg:grid-cols-3">
-        {projects?.map(({ id, name }) => (
+        {projects?.map(({ id, name, color }) => (
           <li key={id}>
             <Card
               to="/projetos/$id"
+              color={color as ProjectColor}
               params={{ id }}
               title={name}
               onDelete={() => handleDelete(id)}
@@ -71,6 +74,7 @@ function CreateProjectButton() {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [name, setName] = useState<string>();
+  const [color, setColor] = useState<ProjectColor>("gray");
   const [error, setError] = useState<string>();
   const [isLoading, setIsLoading] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -89,7 +93,7 @@ function CreateProjectButton() {
       return;
     }
     setIsLoading(true);
-    const { projectId, error } = await createProject({ name });
+    const { projectId, error } = await createProject({ name, color });
     setIsLoading(false);
     if (error) {
       setError(error);
@@ -109,6 +113,7 @@ function CreateProjectButton() {
           setName(e.target.value);
         }}
       />
+      <ColorInput selectedColor={color} onChange={setColor} />
       {error && <Text>não deu certo</Text>}
       <div className="flex w-full justify-end gap-100">
         <Button onClick={() => setIsOpen(false)}>cancelar</Button>

@@ -8,7 +8,7 @@ interface InputProps extends ComponentPropsWithRef<"input"> {
 export function Input({ label, className, ...rest }: InputProps) {
   const id = useId();
   return (
-    <div className={`flex flex-col gap-100 ${className}`}>
+    <div className={`flex w-full flex-col gap-100 ${className}`}>
       {label && (
         <label htmlFor={id} className="cursor-pointer">
           {label}
