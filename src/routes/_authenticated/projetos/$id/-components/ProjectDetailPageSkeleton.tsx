@@ -2,6 +2,7 @@ import { Wrapper } from "@/components/Wrapper";
 import { Skeleton } from "@/components/Skeleton";
 import { TaskSkeleton } from "@/components/TaskSkeleton";
 import { Header } from "@/components/Header";
+import ProjectColorIcon from "@/assets/icons/ProjectColor.svg?react";
 
 export function ProjectDetailPageSkeleton() {
   return (
@@ -9,7 +10,11 @@ export function ProjectDetailPageSkeleton() {
       <Header
         backLink={{ to: "/projetos", label: "projetos" }}
         title={
-          <div className="my-200 flex">
+          <div className="mt-[0.2rem] flex items-center gap-200">
+            <ProjectColorIcon
+              className="size-medium"
+              fill="var(--color-project-gray)"
+            />
             <Skeleton width={200} height={36} />
           </div>
         }
