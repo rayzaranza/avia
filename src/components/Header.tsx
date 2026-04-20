@@ -4,7 +4,7 @@ import { type ReactNode } from "react";
 import { ArrowLeft } from "lucide-react";
 
 interface HeaderProps {
-  title: string;
+  title: string | ReactNode;
   backLink?: string;
   children?: ReactNode;
 }
@@ -21,7 +21,7 @@ export function Header({ title, backLink, children }: HeaderProps) {
         </Link>
       )}
       <div className="flex flex-wrap items-center justify-between gap-100">
-        <Text variant="h1">{title}</Text>
+        {typeof title === "string" ? <Text variant="h1">{title}</Text> : title}
         {children}
       </div>
     </header>

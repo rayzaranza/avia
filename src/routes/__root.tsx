@@ -1,6 +1,7 @@
 import { getUser } from "@/services/auth";
 import { type RouterContext } from "@/types/router";
 import { createRootRouteWithContext, Outlet } from "@tanstack/react-router";
+import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 import { Toaster } from "sonner";
 
 export const Route = createRootRouteWithContext<RouterContext>()({
@@ -13,6 +14,7 @@ function Root() {
     <>
       <Toaster />
       <Outlet />
+      <TanStackRouterDevtools />
     </>
   );
 }

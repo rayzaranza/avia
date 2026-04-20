@@ -11,6 +11,7 @@ import { PopoverContainer } from "@/components/PopoverContainer";
 import { createProject, getProjects } from "@/services/projects";
 import { Card } from "@/components/Card";
 import { useDeleteProject } from "@/hooks/useDeleteProject";
+import { ProjectsPageSkeleton } from "@/components/ProjectsPageSkeleton";
 
 export const Route = createFileRoute("/_authenticated/projetos/")({
   component: ProjectsPage,
@@ -18,6 +19,8 @@ export const Route = createFileRoute("/_authenticated/projetos/")({
     const { projects, error } = await getProjects();
     return { projects, error };
   },
+  pendingMs: 0,
+  pendingComponent: ProjectsPageSkeleton,
 });
 
 function ProjectsPage() {
