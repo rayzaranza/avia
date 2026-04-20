@@ -131,7 +131,7 @@ function CreateProjectButton() {
       containerClassName="z-100"
       content={container}
     >
-      <>
+      <div>
         <Button
           className={cn(
             isOpen ? "pointer-events-none blocky-inset" : "pointer-events-auto",
@@ -144,7 +144,7 @@ function CreateProjectButton() {
           criar projeto
         </Button>
         <FloatingButton onClick={() => setIsOpen(true)} className="sm:hidden" />
-      </>
+      </div>
     </Popover>
   );
 }
