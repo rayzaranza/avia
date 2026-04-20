@@ -8,6 +8,7 @@ import { TasksEmptyState } from "./TasksEmptyState";
 import { Route } from "../route";
 import PlusIcon from "@/assets/icons/Plus.svg?react";
 import { FloatingButton } from "@/components/FloatingButton";
+import type { ProjectColor } from "@/types/projects";
 
 export function ProjectDetailPage() {
   const { project, tasks } = Route.useLoaderData();
@@ -19,6 +20,7 @@ export function ProjectDetailPage() {
       <Header
         backLink={{ to: "/projetos", label: "projetos" }}
         title={project.name}
+        color={(project.color as ProjectColor) ?? "gray"}
       >
         {!isEmpty && (
           <>

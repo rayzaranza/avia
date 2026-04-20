@@ -3,16 +3,17 @@ import { type ReactElement } from "react";
 import { Spinner } from "./Spinner";
 
 interface ButtonProps extends React.ComponentPropsWithRef<"button"> {
-  variant?: "default" | "accent" | "danger";
+  variant?: "default" | "accent" | "danger" | "ghost";
   icon?: ReactElement;
   isLoading?: boolean;
   className?: string;
 }
 
 const variants = {
-  default: "blocky",
-  accent: "blocky-accent",
-  danger: "blocky text-content-danger",
+  default: "blocky border border-border-tertiary",
+  accent: "blocky-accent border border-border-secondary",
+  danger: "blocky text-content-danger border border-border-tertiary",
+  ghost: "hover:blocky border-none",
 };
 
 export function Button({
@@ -35,7 +36,6 @@ export function Button({
         className,
         isLoading && "pointer-events-none blocky-inset",
         "disabled:pointer-events-none disabled:bg-container-inset disabled:text-content-disabled disabled:shadow-none",
-        "border border-border-tertiary",
       )}
       {...rest}
     >

@@ -3,13 +3,16 @@ import { Link, type LinkProps } from "@tanstack/react-router";
 import { Button } from "@/components/Button";
 import TrashIcon from "@/assets/icons/Trash.svg?react";
 import DotsIcon from "@/assets/icons/Dots.svg?react";
+import ProjectColorIcon from "@/assets/icons/ProjectColor.svg?react";
 import { Popover } from "react-tiny-popover";
 import { PopoverContainer } from "./PopoverContainer";
-import { useState, type ReactElement } from "react";
+import { useState } from "react";
 import { cn } from "@/utils/classNames";
+import type { ProjectColor } from "@/types/projects";
+import { projectColorToken } from "@/utils/projectColors";
 
 interface CardProps {
-  icon?: ReactElement;
+  color?: ProjectColor;
   title: string;
   to?: LinkProps["to"];
   params?: LinkProps["params"];
@@ -20,7 +23,7 @@ interface CardProps {
 export function Card({
   to,
   params,
-  icon,
+  color = "gray",
   title,
   onDelete,
   isDeleting,
@@ -30,11 +33,14 @@ export function Card({
   return (
     <article
       className={cn(
-        "group relative flex min-h-[144px] flex-col justify-end gap-200 p-200 pb-100",
+        "group relative flex min-h-[144px] blocky flex-col justify-between gap-200 p-200 pb-100",
         isMenuOpen && "pointer-events-none",
       )}
     >
-      {icon}
+      <ProjectColorIcon
+        fill={projectColorToken[color ?? "gray"]}
+        className="pointer-events-none z-10 size-small shrink-0"
+      />
       <CardActionMenu
         isDeleting={isDeleting}
         onChange={setIsMenuOpen}
@@ -43,7 +49,7 @@ export function Card({
       <Text>
         {to ? (
           <Link
-            className="after:absolute after:inset-[0] after:blocky hover:after:bg-container-hover"
+            className="after:absolute after:inset-[0]"
             to={to}
             params={params}
           >
@@ -86,7 +92,7 @@ function CardActionMenu({
           <Button
             onClick={onDelete}
             icon={<TrashIcon className="text-content-danger" />}
-            variant="danger"
+            variant="ghost"
             isLoading={isDeleting}
           >
             {isDeleting ? "excluindo..." : "excluir projeto"}
@@ -95,6 +101,7 @@ function CardActionMenu({
       }
     >
       <Button
+        variant="ghost"
         className={cn(
           "absolute top-100 right-100 z-20 hidden md:flex md:opacity-0 md:group-hover:opacity-100",
           isOpen &&
