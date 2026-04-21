@@ -15,7 +15,7 @@ import { Route as CriarContaRouteImport } from './../routes/criar-conta'
 import { Route as AuthenticatedRouteImport } from './../routes/_authenticated'
 import { Route as IndexRouteImport } from './../routes/index'
 import { Route as AuthenticatedProjetosIndexRouteImport } from './../routes/_authenticated/projetos.index'
-import { Route as AuthenticatedProjetosIdRouteRouteImport } from './../routes/_authenticated/projetos/$id/route'
+import { Route as AuthenticatedProjetosIdRouteImport } from './../routes/_authenticated/projetos.$id'
 
 const EntrarComEmailRoute = EntrarComEmailRouteImport.update({
   id: '/entrar-com-email',
@@ -47,19 +47,18 @@ const AuthenticatedProjetosIndexRoute =
     path: '/projetos/',
     getParentRoute: () => AuthenticatedRoute,
   } as any)
-const AuthenticatedProjetosIdRouteRoute =
-  AuthenticatedProjetosIdRouteRouteImport.update({
-    id: '/projetos/$id',
-    path: '/projetos/$id',
-    getParentRoute: () => AuthenticatedRoute,
-  } as any)
+const AuthenticatedProjetosIdRoute = AuthenticatedProjetosIdRouteImport.update({
+  id: '/projetos/$id',
+  path: '/projetos/$id',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/criar-conta': typeof CriarContaRoute
   '/entrar': typeof EntrarRoute
   '/entrar-com-email': typeof EntrarComEmailRoute
-  '/projetos/$id': typeof AuthenticatedProjetosIdRouteRoute
+  '/projetos/$id': typeof AuthenticatedProjetosIdRoute
   '/projetos/': typeof AuthenticatedProjetosIndexRoute
 }
 export interface FileRoutesByTo {
@@ -67,7 +66,7 @@ export interface FileRoutesByTo {
   '/criar-conta': typeof CriarContaRoute
   '/entrar': typeof EntrarRoute
   '/entrar-com-email': typeof EntrarComEmailRoute
-  '/projetos/$id': typeof AuthenticatedProjetosIdRouteRoute
+  '/projetos/$id': typeof AuthenticatedProjetosIdRoute
   '/projetos': typeof AuthenticatedProjetosIndexRoute
 }
 export interface FileRoutesById {
@@ -77,7 +76,7 @@ export interface FileRoutesById {
   '/criar-conta': typeof CriarContaRoute
   '/entrar': typeof EntrarRoute
   '/entrar-com-email': typeof EntrarComEmailRoute
-  '/_authenticated/projetos/$id': typeof AuthenticatedProjetosIdRouteRoute
+  '/_authenticated/projetos/$id': typeof AuthenticatedProjetosIdRoute
   '/_authenticated/projetos/': typeof AuthenticatedProjetosIndexRoute
 }
 export interface FileRouteTypes {
@@ -164,19 +163,19 @@ declare module '@tanstack/react-router' {
       id: '/_authenticated/projetos/$id'
       path: '/projetos/$id'
       fullPath: '/projetos/$id'
-      preLoaderRoute: typeof AuthenticatedProjetosIdRouteRouteImport
+      preLoaderRoute: typeof AuthenticatedProjetosIdRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
   }
 }
 
 interface AuthenticatedRouteChildren {
-  AuthenticatedProjetosIdRouteRoute: typeof AuthenticatedProjetosIdRouteRoute
+  AuthenticatedProjetosIdRoute: typeof AuthenticatedProjetosIdRoute
   AuthenticatedProjetosIndexRoute: typeof AuthenticatedProjetosIndexRoute
 }
 
 const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
-  AuthenticatedProjetosIdRouteRoute: AuthenticatedProjetosIdRouteRoute,
+  AuthenticatedProjetosIdRoute: AuthenticatedProjetosIdRoute,
   AuthenticatedProjetosIndexRoute: AuthenticatedProjetosIndexRoute,
 }
 
