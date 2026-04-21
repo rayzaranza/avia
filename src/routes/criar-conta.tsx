@@ -1,4 +1,3 @@
-import { Button } from "@/components/Button";
 import { Input } from "@/components/Input";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import Logo from "@/assets/logo.svg?react";
@@ -9,6 +8,7 @@ import { useState, type SubmitEvent } from "react";
 import { z } from "zod";
 import { ErrorMessage } from "@/components/ErrorMessage";
 import { signUpSchema } from "@/utils/schemas";
+import { SubmitButton } from "@/components/SubmitButton";
 
 export const Route = createFileRoute("/criar-conta")({
   component: SignupPage,
@@ -107,14 +107,7 @@ function SignupPage() {
               required
             />
           </div>
-          <Button
-            isLoading={isPending}
-            className="w-full"
-            variant="accent"
-            type="submit"
-          >
-            criar e entrar
-          </Button>
+          <SubmitButton isLoading={isPending} label="criar e entrar" />
         </form>
       </div>
 
