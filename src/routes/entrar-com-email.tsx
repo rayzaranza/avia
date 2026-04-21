@@ -64,7 +64,7 @@ function SignInPage() {
     <div className="flex h-dvh flex-col place-items-center justify-between gap-600 px-300 py-400">
       <Logo />
 
-      <div className="flex flex-col items-center gap-400">
+      <div className="flex w-full max-w-2xs flex-col items-center gap-400">
         <Header
           isCentered
           backLink={{ to: "/entrar", label: "voltar" }}
@@ -72,10 +72,10 @@ function SignInPage() {
         />
 
         <form
-          className="box-border flex min-w-2xs flex-col gap-300"
+          className="box-border flex w-full flex-col gap-300"
           onSubmit={handleSignIn}
         >
-          <div className="max flex min-w-3xs flex-col gap-200">
+          <div className="max flex w-full flex-col gap-200">
             {errors.root && <ErrorMessage>{errors.root}</ErrorMessage>}
             <Input
               required
@@ -105,7 +105,7 @@ function SignInPage() {
         </form>
       </div>
 
-      <Text className="text-100">
+      <Text>
         não tem conta?{" "}
         <Link className="underline" to="/criar-conta">
           criar agora
