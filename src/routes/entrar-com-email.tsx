@@ -37,7 +37,6 @@ function SignInPage() {
     const password = formData.get("password")?.toString() || "";
 
     const validation = signInSchema.safeParse({ email, password });
-    console.log(validation);
 
     if (!validation.success) {
       setIsPending(false);
