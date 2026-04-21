@@ -16,6 +16,11 @@
     flex-shrink: 0;
   }
 
+  html,
+  body {
+    scrollbar-gutter: stable;
+  }
+
   a,
   button,
   input,
@@ -27,6 +32,10 @@
       outline: 3px solid var(--color-container-accent);
       outline-offset: 4px;
     }
+  }
+
+  body:has(dialog[open]) {
+    overflow: hidden;
   }
 }
 
