@@ -50,7 +50,7 @@ export async function signIn(email: string, password: string) {
   const { error } = await supabase.auth.signInWithPassword({ email, password });
 
   if (error?.code === "invalid_credentials") {
-    return { error: "email ou senah incorretos" };
+    return { error: "email ou senha incorretos" };
   }
 
   return {
