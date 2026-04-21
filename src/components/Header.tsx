@@ -5,17 +5,30 @@ import ArrowBackIcon from "@/assets/icons/ArrowBack.svg?react";
 import ProjectColorIcon from "@/assets/icons/ProjectColor.svg?react";
 import { projectColorToken } from "@/utils/projectColors";
 import type { ProjectColor } from "@/types/projects";
+import { cn } from "@/utils/classNames";
 
 interface HeaderProps {
   title: string | ReactNode;
   backLink?: { to: string; label: string };
   children?: ReactNode;
   color?: ProjectColor;
+  isCentered?: boolean;
 }
 
-export function Header({ title, backLink, children, color }: HeaderProps) {
+export function Header({
+  title,
+  backLink,
+  children,
+  color,
+  isCentered,
+}: HeaderProps) {
   return (
-    <header>
+    <header
+      className={cn(
+        "flex flex-col",
+        isCentered ? "items-center" : "items-start",
+      )}
+    >
       {backLink && (
         <Link
           className="relative right-100 mb-100 inline-flex h-small items-center gap-100 px-100 text-content-secondary hover:blocky"
@@ -24,7 +37,7 @@ export function Header({ title, backLink, children, color }: HeaderProps) {
           <ArrowBackIcon /> {backLink.label ?? "voltar"}
         </Link>
       )}
-      <div className="flex flex-wrap items-center justify-between gap-100">
+      <div className="flex w-full flex-wrap items-center justify-between gap-100">
         <div className="flex items-start gap-200">
           {color && (
             <ProjectColorIcon
@@ -33,7 +46,9 @@ export function Header({ title, backLink, children, color }: HeaderProps) {
             />
           )}
           {typeof title === "string" ? (
-            <Text variant="h1">{title}</Text>
+            <Text className={cn(isCentered && "text-center")} variant="h1">
+              {title}
+            </Text>
           ) : (
             title
           )}

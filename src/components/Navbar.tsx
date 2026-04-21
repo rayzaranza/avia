@@ -59,7 +59,10 @@ export function Navbar({ user }: NavbarProps) {
               )}
               onClick={() => setIsUserMenuOpen(true)}
             >
-              <Avatar image={user.user_metadata.avatar_url} />
+              <Avatar
+                image={user.user_metadata.avatar_url}
+                initial={user.email?.at(0)}
+              />
             </Button>
           </Popover>
         </div>

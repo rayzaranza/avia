@@ -9,15 +9,27 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './../routes/__root'
+import { Route as EntrarComEmailRouteImport } from './../routes/entrar-com-email'
 import { Route as EntrarRouteImport } from './../routes/entrar'
+import { Route as CriarContaRouteImport } from './../routes/criar-conta'
 import { Route as AuthenticatedRouteImport } from './../routes/_authenticated'
 import { Route as IndexRouteImport } from './../routes/index'
 import { Route as AuthenticatedProjetosIndexRouteImport } from './../routes/_authenticated/projetos.index'
 import { Route as AuthenticatedProjetosIdRouteRouteImport } from './../routes/_authenticated/projetos/$id/route'
 
+const EntrarComEmailRoute = EntrarComEmailRouteImport.update({
+  id: '/entrar-com-email',
+  path: '/entrar-com-email',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EntrarRoute = EntrarRouteImport.update({
   id: '/entrar',
   path: '/entrar',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CriarContaRoute = CriarContaRouteImport.update({
+  id: '/criar-conta',
+  path: '/criar-conta',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedRoute = AuthenticatedRouteImport.update({
@@ -44,13 +56,17 @@ const AuthenticatedProjetosIdRouteRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/criar-conta': typeof CriarContaRoute
   '/entrar': typeof EntrarRoute
+  '/entrar-com-email': typeof EntrarComEmailRoute
   '/projetos/$id': typeof AuthenticatedProjetosIdRouteRoute
   '/projetos/': typeof AuthenticatedProjetosIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/criar-conta': typeof CriarContaRoute
   '/entrar': typeof EntrarRoute
+  '/entrar-com-email': typeof EntrarComEmailRoute
   '/projetos/$id': typeof AuthenticatedProjetosIdRouteRoute
   '/projetos': typeof AuthenticatedProjetosIndexRoute
 }
@@ -58,20 +74,36 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteWithChildren
+  '/criar-conta': typeof CriarContaRoute
   '/entrar': typeof EntrarRoute
+  '/entrar-com-email': typeof EntrarComEmailRoute
   '/_authenticated/projetos/$id': typeof AuthenticatedProjetosIdRouteRoute
   '/_authenticated/projetos/': typeof AuthenticatedProjetosIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/entrar' | '/projetos/$id' | '/projetos/'
+  fullPaths:
+    | '/'
+    | '/criar-conta'
+    | '/entrar'
+    | '/entrar-com-email'
+    | '/projetos/$id'
+    | '/projetos/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/entrar' | '/projetos/$id' | '/projetos'
+  to:
+    | '/'
+    | '/criar-conta'
+    | '/entrar'
+    | '/entrar-com-email'
+    | '/projetos/$id'
+    | '/projetos'
   id:
     | '__root__'
     | '/'
     | '/_authenticated'
+    | '/criar-conta'
     | '/entrar'
+    | '/entrar-com-email'
     | '/_authenticated/projetos/$id'
     | '/_authenticated/projetos/'
   fileRoutesById: FileRoutesById
@@ -79,16 +111,32 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthenticatedRoute: typeof AuthenticatedRouteWithChildren
+  CriarContaRoute: typeof CriarContaRoute
   EntrarRoute: typeof EntrarRoute
+  EntrarComEmailRoute: typeof EntrarComEmailRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/entrar-com-email': {
+      id: '/entrar-com-email'
+      path: '/entrar-com-email'
+      fullPath: '/entrar-com-email'
+      preLoaderRoute: typeof EntrarComEmailRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/entrar': {
       id: '/entrar'
       path: '/entrar'
       fullPath: '/entrar'
       preLoaderRoute: typeof EntrarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/criar-conta': {
+      id: '/criar-conta'
+      path: '/criar-conta'
+      fullPath: '/criar-conta'
+      preLoaderRoute: typeof CriarContaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated': {
@@ -139,7 +187,9 @@ const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRoute: AuthenticatedRouteWithChildren,
+  CriarContaRoute: CriarContaRoute,
   EntrarRoute: EntrarRoute,
+  EntrarComEmailRoute: EntrarComEmailRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

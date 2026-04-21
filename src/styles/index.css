@@ -12,6 +12,10 @@
     font-size: 120%;
   }
 
+  svg {
+    flex-shrink: 0;
+  }
+
   a,
   button,
   input,

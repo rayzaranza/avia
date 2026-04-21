@@ -33,3 +33,27 @@ export async function getUser() {
     user: data?.user ?? null,
   };
 }
+
+export async function signUp(email: string, password: string) {
+  const { error } = await supabase.auth.signUp({ email, password });
+
+  if (error?.code === "user_already_exists") {
+    return { error: "email já está sendo usado" };
+  }
+
+  return {
+    error: error?.message || null,
+  };
+}
+
+export async function signIn(email: string, password: string) {
+  const { error } = await supabase.auth.signInWithPassword({ email, password });
+
+  if (error?.code === "invalid_credentials") {
+    return { error: "email ou senah incorretos" };
+  }
+
+  return {
+    error: error?.message || null,
+  };
+}
