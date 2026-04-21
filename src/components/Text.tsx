@@ -8,7 +8,7 @@ interface TextProps {
 }
 
 const variants = {
-  body: { as: "p", classes: "text-body-medium" },
+  body: { as: "p", classes: "text-body-small" },
   caption: { as: "span", classes: "text-body-small text-content-secondary" },
   h1: { as: "h1", classes: "text-heading-large leading-none" },
   h2: { as: "h2", classes: "text-heading-medium leading-none" },
