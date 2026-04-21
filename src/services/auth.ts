@@ -10,6 +10,16 @@ export async function signInWithGitHub() {
   };
 }
 
+export async function signInWithGoogle() {
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: "google",
+  });
+  return {
+    href: data.url ?? null,
+    error: error?.message ?? null,
+  };
+}
+
 export async function signOut() {
   const { error } = await supabase.auth.signOut();
   return {
