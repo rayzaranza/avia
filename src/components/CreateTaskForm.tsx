@@ -1,10 +1,9 @@
 import { Button } from "@/components/Button";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, type SubmitEvent } from "react";
 import { Input } from "@/components/Input";
-import { Text } from "@/components/Text";
-import AlertTriangleIcon from "@/assets/icons/AlertTriangle.svg?react";
 import { useCreateTask } from "@/hooks/useCreateTask";
 import { SubmitButton } from "./SubmitButton";
+import { ErrorMessage } from "./ErrorMessage";
 
 interface CreateTaskFormProps {
   projectId: string;
@@ -12,7 +11,7 @@ interface CreateTaskFormProps {
 }
 
 export function CreateTaskForm({ projectId, onCancel }: CreateTaskFormProps) {
-  const { handleCreateTask, error } = useCreateTask(projectId);
+  const { handleCreateTask, error, isLoading } = useCreateTask(projectId);
   const inputRef = useRef<HTMLInputElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -20,7 +19,9 @@ export function CreateTaskForm({ projectId, onCancel }: CreateTaskFormProps) {
     inputRef.current?.focus();
   }, []);
 
-  async function handleFormAction(formData: FormData) {
+  async function handleFormAction(event: SubmitEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
     const { success } = await handleCreateTask(formData);
     if (success) {
       formRef.current?.reset();
@@ -31,24 +32,17 @@ export function CreateTaskForm({ projectId, onCancel }: CreateTaskFormProps) {
   return (
     <>
       <form
-        action={handleFormAction}
+        onSubmit={handleFormAction}
         onKeyDown={({ key }) => key === "Escape" && onCancel()}
         className="flex min-h-600 flex-wrap items-center gap-200 rounded-medium bg-container p-200 shadow-blocky-floating md:flex-nowrap"
       >
         <Input ref={inputRef} name="name" className="w-full" />
-
+        {error && <ErrorMessage>{error}</ErrorMessage>}
         <div className="flex w-full justify-end gap-100 md:w-auto">
           <Button onClick={onCancel}>cancelar</Button>
-          <SubmitButton label="criar" loadingLoading="criando..." />
+          <SubmitButton label="criar" isLoading={isLoading} />
         </div>
       </form>
-
-      {error && (
-        <div className="ml-100 flex items-center gap-100 p-100 text-content-danger">
-          <AlertTriangleIcon />
-          <Text>{error}</Text>
-        </div>
-      )}
     </>
   );
 }

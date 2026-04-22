@@ -18,7 +18,7 @@ export function ColorInput({
   return (
     <div>
       <Text className="mb-100 text-100">cor</Text>
-      <ul className="flex items-center gap-100">
+      <ul className="flex flex-wrap items-center gap-100">
         {projectColors.map((color) => (
           <li key={color}>
             <Button

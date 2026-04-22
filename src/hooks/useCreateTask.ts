@@ -12,13 +12,16 @@ const taskNameSchema = z
 export function useCreateTask(projectId: string) {
   const router = useRouter();
   const [errorMessage, setErrorMessage] = useState<string>("");
+  const [isLoading, setIsLoading] = useState(false);
 
   async function handleCreateTask(formData: FormData) {
+    setIsLoading(true);
     setErrorMessage("");
     const name = formData.get("name");
     const validation = taskNameSchema.safeParse(name);
 
     if (validation.error) {
+      setIsLoading(false);
       setErrorMessage(
         validation.error.issues[0]?.message ?? "erro de validação",
       );
@@ -31,14 +34,16 @@ export function useCreateTask(projectId: string) {
     });
 
     if (error) {
+      setIsLoading(false);
       setErrorMessage(error);
       return { success: false };
     }
 
     await router.invalidate({ sync: true });
     setErrorMessage("");
+    setIsLoading(false);
     return { success: true };
   }
 
-  return { handleCreateTask, error: errorMessage };
+  return { handleCreateTask, error: errorMessage, isLoading };
 }

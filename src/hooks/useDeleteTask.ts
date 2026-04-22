@@ -39,6 +39,8 @@ export function useDeleteTask() {
         setStatus(null);
         return;
       }
+      await router.invalidate({ sync: true });
+      setStatus(null);
       showToast({
         title: "tarefa excluída",
         action: {
@@ -47,8 +49,6 @@ export function useDeleteTask() {
           onClick: async () => await handleUndo(taskId),
         },
       });
-      await router.invalidate({ sync: true });
-      setStatus(null);
     });
   }
 

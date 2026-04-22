@@ -11,6 +11,8 @@ import { signOut } from "@/services/auth";
 import { Text } from "./Text";
 import { cn } from "@/utils/classNames";
 import LogoutIcon from "@/assets/icons/Logout.svg?react";
+import { useRouter } from "@tanstack/react-router";
+import { showToast } from "@/utils/toast";
 
 interface NavbarProps {
   user: User;
@@ -18,12 +20,18 @@ interface NavbarProps {
 
 export function Navbar({ user }: NavbarProps) {
   const navigate = useNavigate();
+  const router = useRouter();
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   async function handleSignOut() {
     setIsLoading(true);
-    await signOut();
+    const { error } = await signOut();
+    if (error) {
+      showToast({ title: "erro ao sair da conta, tente novamente" });
+    }
+    await router.invalidate({ sync: true });
+    router.clearCache();
     await navigate({ to: "/entrar" });
   }
 

@@ -35,7 +35,7 @@ export function Button({
         variants[variant],
         className,
         isLoading && "pointer-events-none blocky-inset",
-        "disabled:pointer-events-none disabled:bg-container-inset disabled:text-content-disabled disabled:shadow-none",
+        "disabled:pointer-events-none disabled:border-0 disabled:bg-container-inset disabled:text-content-disabled disabled:shadow-none",
       )}
       {...rest}
     >

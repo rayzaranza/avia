@@ -37,6 +37,8 @@ export function useDeleteProject() {
         setStatus(null);
         return;
       }
+      await router.invalidate({ sync: true });
+      setStatus(null);
       showToast({
         title: "projeto excluído",
         action: {
@@ -45,8 +47,6 @@ export function useDeleteProject() {
           onClick: async () => await handleUndo(projectId),
         },
       });
-      await router.invalidate({ sync: true });
-      setStatus(null);
     });
   }
 

@@ -1,4 +1,3 @@
-import { Button } from "@/components/Button";
 import { Input } from "@/components/Input";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import Logo from "@/assets/logo.svg?react";
@@ -9,6 +8,7 @@ import { useState, type SubmitEvent } from "react";
 import { z } from "zod";
 import { ErrorMessage } from "@/components/ErrorMessage";
 import { signInSchema } from "@/utils/schemas";
+import { SubmitButton } from "@/components/SubmitButton";
 
 export const Route = createFileRoute("/entrar-com-email")({
   component: SignInPage,
@@ -37,7 +37,6 @@ function SignInPage() {
     const password = formData.get("password")?.toString() || "";
 
     const validation = signInSchema.safeParse({ email, password });
-    console.log(validation);
 
     if (!validation.success) {
       setIsPending(false);
@@ -94,14 +93,7 @@ function SignInPage() {
               error={errors.password}
             />
           </div>
-          <Button
-            isLoading={isPending}
-            className="w-full"
-            variant="accent"
-            type="submit"
-          >
-            entrar
-          </Button>
+          <SubmitButton isLoading={isPending} label="entrar" />
         </form>
       </div>
 
