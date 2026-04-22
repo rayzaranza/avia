@@ -25,7 +25,7 @@ export function useCreateTask(projectId: string) {
       setErrorMessage(
         validation.error.issues[0]?.message ?? "erro de validação",
       );
-      return { success: false };
+      return;
     }
 
     const { error } = await createTask({
@@ -36,13 +36,13 @@ export function useCreateTask(projectId: string) {
     if (error) {
       setIsLoading(false);
       setErrorMessage(error);
-      return { success: false };
+      return;
     }
 
     await router.invalidate({ sync: true });
     setErrorMessage("");
     setIsLoading(false);
-    return { success: true };
+    return;
   }
 
   return { handleCreateTask, error: errorMessage, isLoading };
