@@ -31,7 +31,8 @@ export function Navbar({ user }: NavbarProps) {
       showToast({ title: "erro ao sair da conta, tente novamente" });
     }
     await router.invalidate({ sync: true });
-    await navigate({ to: "/entrar", reloadDocument: true });
+    router.clearCache();
+    await navigate({ to: "/entrar" });
   }
 
   return (
