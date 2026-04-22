@@ -11,23 +11,26 @@ export function Dialog({ children, isOpen, onClose }: DialogProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
+    const ref = dialogRef.current;
     if (isOpen) {
-      dialogRef.current?.showModal();
-      document.body.classList.add("overlay");
+      ref?.showModal();
     } else {
-      dialogRef.current?.close();
+      ref?.close();
     }
+    return () => ref?.close();
   }, [isOpen]);
 
-  const dialog = (
+  return createPortal(
     <dialog
       ref={dialogRef}
       onClose={onClose}
+      onClick={(e) => {
+        if (e.target === dialogRef.current) onClose();
+      }}
       className="m-auto bg-canvas p-300 text-content shadow-blocky-floating backdrop:bg-backdrop sm:px-400"
     >
-      {children}
-    </dialog>
+      {isOpen && children}
+    </dialog>,
+    document.body,
   );
-
-  return isOpen ? createPortal(dialog, document.body) : null;
 }
