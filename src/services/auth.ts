@@ -28,9 +28,9 @@ export async function signOut() {
 }
 
 export async function getUser() {
-  const { data } = await supabase.auth.getUser();
+  const { data } = await supabase.auth.getSession();
   return {
-    user: data?.user ?? null,
+    user: data?.session?.user ?? null,
   };
 }
 
