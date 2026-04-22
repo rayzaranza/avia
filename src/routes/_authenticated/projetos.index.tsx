@@ -29,9 +29,10 @@ function ProjectsPage() {
   const { projects } = Route.useLoaderData();
   const { isDeleting, handleDelete } = useDeleteProject();
   const [showDialog, setShowDialog] = useState(false);
+  const isEmpty = projects?.length === 0;
 
   const createProjectButton = (
-    <div>
+    <>
       <Button
         className={cn("hidden sm:flex")}
         onClick={() => setShowDialog(true)}
@@ -47,27 +48,20 @@ function ProjectsPage() {
           className="sm:hidden"
         />
       )}
-    </div>
+    </>
   );
 
-  if (projects?.length === 0) {
-    return (
-      <Wrapper>
-        <Header title="projetos" />
+  return (
+    <Wrapper className="flex flex-col gap-400 pb-[900px]">
+      <Header title="projetos">{!isEmpty && createProjectButton}</Header>
+
+      {isEmpty ? (
         <EmptyState
           icon={<FolderIcon className="size-medium" />}
           description="Use projetos para agrupar tarefas relacionadas e manter o foco"
           action={createProjectButton}
         />
-      </Wrapper>
-    );
-  }
-
-  return (
-    <>
-      <Wrapper className="flex flex-col gap-400 pb-[900px]">
-        <Header title="projetos">{createProjectButton}</Header>
-
+      ) : (
         <ul className="grid grid-cols-1 gap-200 sm:grid-cols-2 lg:grid-cols-3">
           {projects?.map(({ id, name, color }) => (
             <li key={id}>
@@ -82,14 +76,12 @@ function ProjectsPage() {
             </li>
           ))}
         </ul>
-      </Wrapper>
-
-      {showDialog && (
-        <CreateProjectDialog
-          onCancel={() => setShowDialog(false)}
-          isOpen={showDialog}
-        />
       )}
-    </>
+
+      <CreateProjectDialog
+        onCancel={() => setShowDialog(false)}
+        isOpen={showDialog}
+      />
+    </Wrapper>
   );
 }
